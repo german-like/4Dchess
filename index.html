@@ -13,7 +13,6 @@
             --board-dark: #769656;
             --accent-green: #81b64c;
             --accent-red: #f87171;
-            
             --cell-size: clamp(30px, 8vh, 80px);
             --nav-cell-size: 24px;
         }
@@ -118,17 +117,7 @@
         .piece-white { color: #ffffff; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)); }
         .piece-black { color: #000000; filter: drop-shadow(0 1px 2px rgba(255,255,255,0.2)); }
 
-        .nav-container {
-            background: #211f1c;
-            padding: 1rem;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        .nav-grid {
-            display: grid;
-            gap: 4px;
-        }
+        .nav-grid { display: grid; gap: 4px; }
         .nav-cell {
             width: var(--nav-cell-size);
             height: var(--nav-cell-size);
@@ -136,267 +125,74 @@
             border-radius: 4px;
             cursor: pointer;
             position: relative;
-            border: 1px solid transparent;
-            transition: all 0.2s;
         }
-        .nav-cell:hover { background: #555; }
         .nav-cell.active { 
             background: #4a4742 !important;
-            border-color: var(--accent-green);
+            border: 1px solid var(--accent-green);
             transform: scale(1.1);
-            z-index: 5;
-        }
-        .nav-cell.last-move-nav {
-            background: rgba(245, 246, 130, 0.4) !important;
-            box-shadow: inset 0 0 0 1px rgba(245, 246, 130, 0.8);
-        }
-        .nav-cell.can-move-to::after {
-            content: ''; position: absolute; width: 6px; height: 6px; 
-            background: var(--accent-green); border-radius: 50%;
-            top: 50%; left: 50%; transform: translate(-50%, -50%);
-        }
-        .nav-cell.has-piece-white { background: #666; border-bottom: 2px solid white; }
-        .nav-cell.has-piece-black { background: #666; border-bottom: 2px solid black; }
-        
-        .controls-panel {
-            background: #211f1c;
-            padding: 1rem;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-        }
-        .axis-btn {
-            background: #3c3934;
-            color: #ccc;
-            padding: 0.6rem;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: bold;
-            transition: all 0.2s;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        .axis-btn.active {
-            background: var(--accent-green);
-            color: white;
-            box-shadow: 0 2px 8px rgba(129, 182, 76, 0.4);
-        }
-
-        .player-card {
-            background: #211f1c;
-            padding: 0.8rem;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 0.5rem;
         }
 
         #turn-indicator {
             font-weight: 800; font-size: 0.85rem; text-transform: uppercase;
             padding: 0.6rem; border-radius: 6px; margin-bottom: 1rem; text-align: center;
-            letter-spacing: 0.1em;
         }
         .turn-white { background: #fff; color: #000; }
         .turn-black { background: #000; color: #fff; }
-        .is-check { background: var(--accent-red) !important; color: white !important; animation: pulse 1s infinite; }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); opacity: 0.9; }
-            100% { transform: scale(1); }
-        }
-
-        .axis-label {
-            position: absolute; font-size: 14px; font-weight: 900; 
-            color: rgba(255,255,255,0.3); pointer-events: none;
-            letter-spacing: 0.5em;
-        }
-
-        .exit-btn {
-            margin-top: auto;
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #777;
-            font-size: 10px;
-            text-transform: uppercase;
-            font-weight: 900;
-            padding: 0.75rem;
-            border-radius: 8px;
-            text-align: center;
-            letter-spacing: 0.2em;
-            transition: all 0.2s;
-            cursor: pointer;
-        }
-        .exit-btn:hover {
-            background: rgba(248, 113, 113, 0.1);
-            color: var(--accent-red);
-            border-color: rgba(248, 113, 113, 0.3);
-        }
-
-        .mode-toggle {
-            display: flex;
-            background: #211f1c;
-            border-radius: 8px;
-            padding: 4px;
-            margin-bottom: 1.5rem;
-        }
-        .mode-btn {
-            flex: 1;
-            padding: 0.5rem;
-            border-radius: 6px;
-            font-size: 10px;
-            font-weight: 900;
-            text-transform: uppercase;
-            transition: all 0.2s;
-            color: #666;
-        }
-        .mode-btn.active {
-            background: #3c3934;
-            color: white;
-        }
-
-        .input-dark {
-            background: #1a1917;
-            border: 1px solid #3c3934;
-            color: white;
-            padding: 0.75rem;
-            border-radius: 6px;
-            width: 100%;
-            text-align: center;
-            font-weight: bold;
-            letter-spacing: 0.2em;
-        }
-        .input-dark:focus {
-            outline: none;
-            border-color: var(--accent-green);
-        }
-
-        #msg-overlay {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(248, 113, 113, 0.9);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: bold;
-            z-index: 1000;
-            display: none;
-            animation: slideDown 0.3s ease-out;
-        }
-        @keyframes slideDown { from { top: -50px; } to { top: 20px; } }
+        .is-check { background: var(--accent-red) !important; color: white !important; }
     </style>
 </head>
 <body>
 
-<div id="msg-overlay"></div>
+<div id="msg-overlay" class="fixed top-5 left-1/2 -translate-x-1/2 bg-red-500 text-white px-4 py-2 rounded hidden z-[1000]"></div>
 
 <div id="lobby-screen" class="overlay-screen">
-    <div class="mb-12 text-center">
-        <h1 class="text-7xl font-black text-white mb-2 tracking-tighter italic">4D <span class="text-green-500">CHESS</span></h1>
-        <div class="h-1 w-24 bg-green-500 mx-auto rounded-full"></div>
-        <p class="text-zinc-500 mt-6 text-[10px] font-bold tracking-[0.4em] uppercase">Hypercube Tesseract Board</p>
-    </div>
-    
-    <div class="w-full max-w-xs px-6 space-y-6">
-        <div class="space-y-2">
-            <div class="text-[9px] uppercase font-bold text-zinc-600 tracking-[0.3em] text-center">Select Board Scale</div>
-            <div class="mode-toggle">
-                <button onclick="setBoardMode(4)" id="mode-4" class="mode-btn active">Standard (4x4)</button>
-                <button onclick="setBoardMode(8)" id="mode-8" class="mode-btn">Grand (8x8)</button>
-            </div>
-        </div>
-
-        <div class="space-y-3">
-            <button id="practice-btn" onclick="handlePracticeAI()" class="w-full btn-primary text-xl uppercase tracking-widest" disabled>Initializing...</button>
-            
-            <div class="relative py-4">
-                <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-zinc-800"></div></div>
-                <div class="relative flex justify-center text-[10px] uppercase font-bold text-zinc-600 bg-zinc-900 px-2 tracking-widest">OR</div>
-            </div>
-
-            <div class="space-y-3">
-                <button onclick="handleCreateRoom()" id="create-btn" class="w-full bg-zinc-800 hover:bg-zinc-700 text-white font-bold py-4 rounded-lg transition uppercase tracking-widest disabled:opacity-50" disabled>Create Room</button>
-                <div class="flex gap-2">
-                    <input type="text" id="room-input" placeholder="ROOM CODE" class="input-dark text-xs uppercase">
-                    <button onclick="handleJoinRoom()" id="join-btn" class="bg-zinc-700 px-4 rounded-lg font-black text-xs hover:bg-zinc-600 disabled:opacity-50" disabled>JOIN</button>
-                </div>
-            </div>
+    <h1 class="text-6xl font-black text-white mb-8 italic">4D <span class="text-green-500">CHESS</span></h1>
+    <div class="w-full max-w-xs space-y-4">
+        <button id="practice-btn" onclick="handlePracticeAI()" class="w-full btn-primary" disabled>Initializing...</button>
+        <button id="create-btn" onclick="handleCreateRoom()" class="w-full bg-zinc-800 py-4 rounded-lg font-bold" disabled>Create Room</button>
+        <div class="flex gap-2">
+            <input type="text" id="room-input" placeholder="ROOM CODE" class="bg-zinc-900 border border-zinc-700 rounded p-2 flex-1 text-center uppercase">
+            <button id="join-btn" onclick="handleJoinRoom()" class="bg-zinc-700 px-4 rounded font-bold" disabled>JOIN</button>
         </div>
     </div>
-    
-    <div class="mt-8 text-zinc-600 text-[9px] uppercase font-bold tracking-[0.5em]">Tesseract Engine v2.1</div>
 </div>
 
 <div class="app-container" id="game-ui">
     <aside class="sidebar">
-        <div class="mb-6 flex items-center justify-between">
-            <div class="text-2xl font-black text-white tracking-tighter">4D <span class="text-green-500">CHESS</span></div>
-            <div id="room-info" class="text-[9px] font-mono text-zinc-500 cursor-pointer hover:text-white transition bg-black/30 px-2 py-1 rounded">...</div>
-        </div>
-
+        <div class="text-2xl font-black mb-6 italic">4D <span class="text-green-500">CHESS</span></div>
         <div id="turn-indicator" class="turn-white">White's Turn</div>
+        <div id="room-info" class="text-xs text-zinc-500 mb-4 bg-black/20 p-2 rounded">...</div>
 
-        <div class="controls-panel">
-            <div class="text-[10px] uppercase font-bold text-zinc-500 mb-3 tracking-[0.2em]">Projections</div>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="space-y-2">
-                    <div class="text-[9px] text-zinc-500 uppercase font-black">Horizontal</div>
-                    <div class="flex flex-col gap-1" id="mapping-h">
-                        <button onclick="setMapping('h', 0)" class="axis-btn" data-axis="0">X-AXIS</button>
-                        <button onclick="setMapping('h', 2)" class="axis-btn" data-axis="2">Z-AXIS</button>
-                    </div>
-                </div>
-                <div class="space-y-2">
-                    <div class="text-[9px] text-zinc-500 uppercase font-black">Vertical</div>
-                    <div class="flex flex-col gap-1" id="mapping-v">
-                        <button onclick="setMapping('v', 1)" class="axis-btn" data-axis="1">Y-AXIS</button>
-                        <button onclick="setMapping('v', 3)" class="axis-btn" data-axis="3">W-AXIS</button>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-4 pt-3 border-t border-white/5 text-center">
-                <span class="text-[10px] text-zinc-400 font-mono" id="view-desc">PLANE: X-Y</span>
+        <div class="bg-zinc-900 p-4 rounded-lg mb-4">
+            <div class="text-[10px] text-zinc-500 mb-2 uppercase">Projections</div>
+            <div class="grid grid-cols-2 gap-2">
+                <select onchange="setMapping('h', this.value)" class="bg-zinc-800 text-xs p-1 rounded">
+                    <option value="0" selected>X Axis</option>
+                    <option value="1">Y Axis</option>
+                    <option value="2">Z Axis</option>
+                    <option value="3">W Axis</option>
+                </select>
+                <select onchange="setMapping('v', this.value)" class="bg-zinc-800 text-xs p-1 rounded">
+                    <option value="0">X Axis</option>
+                    <option value="1" selected>Y Axis</option>
+                    <option value="2">Z Axis</option>
+                    <option value="3">W Axis</option>
+                </select>
             </div>
         </div>
 
-        <div class="nav-container">
-            <div class="flex justify-between items-center mb-3">
-                <span id="nav-label" class="text-[10px] uppercase font-black text-zinc-500 tracking-widest">Navigator</span>
-                <span id="current-coords-label" class="text-[10px] font-mono text-green-500 font-bold bg-green-950/50 px-2 py-0.5 rounded border border-green-900/50">...</span>
-            </div>
-            <div class="flex justify-center">
-                <div id="nav-view" class="nav-grid"></div>
-            </div>
+        <div class="bg-zinc-900 p-4 rounded-lg">
+            <div class="text-[10px] text-zinc-500 mb-2 uppercase" id="nav-label">Navigator</div>
+            <div id="nav-view" class="flex justify-center"></div>
         </div>
 
-        <div class="space-y-2" id="players-list">
-            <div class="player-card" id="card-black">
-                <div class="w-8 h-8 rounded bg-zinc-800 flex items-center justify-center font-bold text-[10px] text-zinc-500">B</div>
-                <div class="flex-1">
-                    <div class="text-xs font-black text-zinc-300 uppercase">Black</div>
-                    <div id="opp-status" class="text-[10px] text-zinc-500 font-bold">WAITING...</div>
-                </div>
-            </div>
-            <div class="player-card" id="card-white">
-                <div class="w-8 h-8 rounded bg-green-900/20 flex items-center justify-center font-bold text-[10px] text-green-500">W</div>
-                <div class="flex-1">
-                    <div class="text-xs font-black text-white uppercase">White</div>
-                    <div id="user-role-label" class="text-[10px] text-green-500 font-bold uppercase tracking-widest">Commander</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="exit-btn" onclick="resetToLobby()">
-            Exit Game
+        <div class="mt-auto pt-4">
+            <button onclick="resetToLobby()" class="text-zinc-600 text-xs hover:text-red-400">Exit Game</button>
         </div>
     </aside>
 
     <main class="main-content">
-        <div class="relative">
-            <div id="main-board" class="main-board"></div>
-            <div id="label-h" class="axis-label bottom-[-45px] left-1/2 -translate-x-1/2 uppercase">X-AXIS</div>
-            <div id="label-v" class="axis-label left-[-70px] top-1/2 -translate-y-1/2 -rotate-90 uppercase">Y-AXIS</div>
-        </div>
+        <div id="main-board" class="main-board"></div>
     </main>
 </div>
 
@@ -405,25 +201,24 @@
     import { getFirestore, doc, setDoc, onSnapshot, updateDoc, getDoc, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
     import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
-    // Firebase Config
+    // --- Firebase Initialization ---
     const firebaseConfig = JSON.parse(__firebase_config);
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
     const auth = getAuth(app);
-    const appId = typeof __app_id !== 'undefined' ? __app_id : '4d-chess-hypercube-v2';
+    const appId = typeof __app_id !== 'undefined' ? __app_id : '4d-chess-hyper';
 
-    let DIM_SIZES = [4, 4, 4, 4];
+    let user = null;
     let currentRoomId = null;
     let gameState = null;
-    let user = null;
     let userRole = 'spectator';
     let isAiMode = false;
-    let unsubscribeRoom = null;
+    let DIM_SIZES = [4,4,4,4];
     let mappingH = 0; 
     let mappingV = 1; 
-    let navIndices = [0, 0, 0, 0]; 
+    let navIndices = [0,0,0,0];
+    let unsubscribeRoom = null;
 
-    const AXIS_NAMES = ['X', 'Y', 'Z', 'W'];
     const PIECES = {
         pawn: { white: '♟', black: '♟' },
         rook: { white: '♜', black: '♜' },
@@ -436,11 +231,11 @@
     const showMsg = (txt) => {
         const el = document.getElementById('msg-overlay');
         el.innerText = txt;
-        el.style.display = 'block';
-        setTimeout(() => el.style.display = 'none', 3000);
+        el.classList.remove('hidden');
+        setTimeout(() => el.classList.add('hidden'), 3000);
     };
 
-    // --- MANDATORY AUTH FLOW ---
+    // --- Authentication (Strict Wait) ---
     const startAuth = async () => {
         try {
             if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
@@ -449,64 +244,23 @@
                 await signInAnonymously(auth);
             }
         } catch (e) {
-            console.error("Auth Failure", e);
-            showMsg("Connection Error. Please refresh.");
+            console.error("Auth error", e);
+            showMsg("Connection failed. Try refreshing.");
         }
     };
 
     onAuthStateChanged(auth, u => {
         user = u;
         if (u) {
+            document.querySelectorAll('button').forEach(b => b.disabled = false);
             document.getElementById('practice-btn').innerText = "SINGLE PLAYER";
-            document.getElementById('practice-btn').disabled = false;
-            document.getElementById('create-btn').disabled = false;
-            document.getElementById('join-btn').disabled = false;
-            console.log("Authenticated as", u.uid);
         }
     });
-
     startAuth();
 
-    // --- BOARD LOGIC ---
-    window.setBoardMode = (size) => {
-        DIM_SIZES = [size, size, 4, 4];
-        document.getElementById('mode-4').classList.toggle('active', size === 4);
-        document.getElementById('mode-8').classList.toggle('active', size === 8);
-        const root = document.documentElement;
-        if (size === 8) {
-            root.style.setProperty('--cell-size', 'clamp(25px, 5vh, 45px)');
-            root.style.setProperty('--nav-cell-size', '16px');
-        } else {
-            root.style.setProperty('--cell-size', 'clamp(35px, 10vh, 80px)');
-            root.style.setProperty('--nav-cell-size', '24px');
-        }
-    };
-
-    function createInitialBoard() {
-        let b = {};
-        const setPiece = (x, y, z, w, type, color) => { 
-            b[`${x},${y},${z},${w}`] = { type, color, hasMoved: false }; 
-        };
-        const sizeX = DIM_SIZES[0];
-        if (sizeX === 4) {
-            for(let x=0; x<4; x++) setPiece(x, 1, 0, 0, 'pawn', 'white');
-            setPiece(0, 0, 0, 0, 'rook', 'white'); setPiece(1, 0, 0, 0, 'knight', 'white'); setPiece(2, 0, 0, 0, 'bishop', 'white'); setPiece(3, 0, 0, 0, 'king', 'white');
-            for(let x=0; x<4; x++) setPiece(x, 2, 3, 3, 'pawn', 'black');
-            setPiece(0, 3, 3, 3, 'king', 'black'); setPiece(1, 3, 3, 3, 'bishop', 'black'); setPiece(2, 3, 3, 3, 'knight', 'black'); setPiece(3, 3, 3, 3, 'rook', 'black');
-        } else {
-            const layout = ['rook', 'knight', 'bishop', 'queen', 'king', 'bishop', 'knight', 'rook'];
-            for(let x=0; x<8; x++) {
-                setPiece(x, 1, 0, 0, 'pawn', 'white');
-                setPiece(x, 0, 0, 0, layout[x], 'white');
-                setPiece(x, 6, 3, 3, 'pawn', 'black');
-                setPiece(x, 7, 3, 3, layout[x], 'black');
-            }
-        }
-        return b;
-    }
-
-    // --- GAME ENGINE HELPERS ---
+    // --- 4D Chess Engine ---
     function isInside(p) { return p.every((v, i) => v >= 0 && v < DIM_SIZES[i]); }
+
     function getRawMoves(coords, board) {
         const p = board[coords.join(',')];
         if (!p) return [];
@@ -515,4 +269,246 @@
             if (!isInside(nc)) return 'out';
             const target = board[nc.join(',')];
             if (!target) return 'empty';
-            return target.color !== p.color ? 
+            return target.color !== p.color ? 'capture' : 'blocked';
+        };
+
+        const addS = (dirs) => dirs.forEach(d => {
+            let cur = coords.map((v, i) => v + d[i]);
+            while(true) {
+                let s = check(cur);
+                if (s === 'out' || s === 'blocked') break;
+                moves.push(cur.join(','));
+                if (s === 'capture') break;
+                cur = cur.map((v, i) => v + d[i]);
+            }
+        });
+
+        const addP = (dirs) => dirs.forEach(d => {
+            let cur = coords.map((v, i) => v + d[i]);
+            let s = check(cur);
+            if (s === 'empty' || s === 'capture') moves.push(cur.join(','));
+        });
+
+        const ortho = [];
+        for(let i=0; i<4; i++) { let v1=[0,0,0,0], v2=[0,0,0,0]; v1[i]=1; v2[i]=-1; ortho.push(v1, v2); }
+        
+        const diag = [];
+        for(let i=0; i<4; i++) for(let j=i+1; j<4; j++) [1,-1].forEach(v1 => [1,-1].forEach(v2 => { 
+            let v=[0,0,0,0]; v[i]=v1; v[j]=v2; diag.push(v); 
+        }));
+
+        if (['rook', 'queen'].includes(p.type)) addS(ortho);
+        if (['bishop', 'queen'].includes(p.type)) addS(diag);
+        if (p.type === 'king') addP([...ortho, ...diag]);
+        if (p.type === 'knight') {
+            const kdirs = [];
+            for(let i=0; i<4; i++) for(let j=0; j<4; j++) if(i!==j) [2,-2].forEach(v1=>[1,-1].forEach(v2=>{ 
+                let v=[0,0,0,0]; v[i]=v1; v[j]=v2; kdirs.push(v); 
+            }));
+            addP(kdirs);
+        }
+        if (p.type === 'pawn') {
+            const dir = p.color === 'white' ? 1 : -1;
+            const forward = coords.map((v,i) => i===1 ? v+dir : v);
+            if (check(forward) === 'empty') moves.push(forward.join(','));
+            [0,2,3].forEach(a => [1,-1].forEach(dx => {
+                const c = coords.map((v,i) => i===1 ? v+dir : (i===a ? v+dx : v));
+                if (check(c) === 'capture') moves.push(c.join(','));
+            }));
+        }
+        return moves;
+    }
+
+    function isCheck(color, board) {
+        let kingPos = null;
+        for (let k in board) if (board[k].type === 'king' && board[k].color === color) { kingPos = k; break; }
+        if (!kingPos) return false;
+        for (let k in board) if (board[k].color !== color) {
+            if (getRawMoves(k.split(',').map(Number), board).includes(kingPos)) return true;
+        }
+        return false;
+    }
+
+    function getValidMoves(coords, board) {
+        const key = coords.join(',');
+        return getRawMoves(coords, board).filter(toKey => {
+            const temp = { ...board };
+            temp[toKey] = { ...temp[key] };
+            delete temp[key];
+            return !isCheck(board[key].color, temp);
+        });
+    }
+
+    // --- State & Rendering ---
+    function createInitialBoard() {
+        let b = {};
+        const set = (x,y,z,w, type, color) => b[`${x},${y},${z},${w}`] = {type, color};
+        for(let x=0; x<4; x++) {
+            set(x,1,0,0,'pawn','white'); set(x,2,3,3,'pawn','black');
+        }
+        set(0,0,0,0,'rook','white'); set(1,0,0,0,'knight','white'); set(2,0,0,0,'bishop','white'); set(3,0,0,0,'king','white');
+        set(0,3,3,3,'king','black'); set(1,3,3,3,'bishop','black'); set(2,3,3,3,'knight','black'); set(3,3,3,3,'rook','black');
+        return b;
+    }
+
+    let selectedPos = null, validMoves = [];
+
+    function render() {
+        if (!gameState) return;
+        const mainBoardEl = document.getElementById('main-board');
+        mainBoardEl.style.gridTemplateColumns = `repeat(4, var(--cell-size))`;
+        mainBoardEl.innerHTML = '';
+
+        const navAxes = [0,1,2,3].filter(a => a != mappingH && a != mappingV);
+        document.getElementById('nav-label').innerText = `Navigator (${navAxes.map(a => ['X','Y','Z','W'][a]).join('-')})`;
+
+        for(let vy=3; vy>=0; vy--) {
+            for(let vx=0; vx<4; vx++) {
+                const c = [...navIndices];
+                c[mappingH] = vx; c[mappingV] = vy;
+                const key = c.join(',');
+                const piece = gameState.board[key];
+                const cell = document.createElement('div');
+                cell.className = `cell ${(vx+vy)%2===0?'dark':'light'}`;
+                if(selectedPos === key) cell.classList.add('selected');
+                if(validMoves.includes(key)) cell.classList.add('highlight');
+                
+                if(piece) {
+                    const span = document.createElement('span');
+                    span.innerText = PIECES[piece.type][piece.color];
+                    span.className = `piece piece-${piece.color}`;
+                    cell.appendChild(span);
+                }
+
+                cell.onclick = () => {
+                    if (gameState.turn !== userRole) return;
+                    if (selectedPos === key) { selectedPos = null; validMoves = []; }
+                    else if (piece && piece.color === userRole) {
+                        selectedPos = key; validMoves = getValidMoves(c, gameState.board);
+                    } else if (validMoves.includes(key)) {
+                        handleMove(selectedPos, key);
+                        selectedPos = null; validMoves = [];
+                    } else { selectedPos = null; validMoves = []; }
+                    render();
+                };
+                mainBoardEl.appendChild(cell);
+            }
+        }
+
+        const navEl = document.getElementById('nav-view');
+        navEl.style.gridTemplateColumns = 'repeat(4, var(--nav-cell-size))';
+        navEl.innerHTML = '';
+        for(let nv=3; nv>=0; nv--) {
+            for(let nh=0; nh<4; nh++) {
+                const cell = document.createElement('div');
+                cell.className = `nav-cell ${navIndices[navAxes[0]]===nh && navIndices[navAxes[1]]===nv ? 'active' : ''}`;
+                cell.onclick = () => { navIndices[navAxes[0]] = nh; navIndices[navAxes[1]] = nv; render(); };
+                navEl.appendChild(cell);
+            }
+        }
+        
+        const turnEl = document.getElementById('turn-indicator');
+        turnEl.innerText = `${gameState.turn.toUpperCase()}'S TURN`;
+        turnEl.className = (gameState.turn === 'white' ? 'turn-white' : 'turn-black') + (isCheck(gameState.turn, gameState.board) ? ' is-check' : '');
+    }
+
+    async function handleMove(from, to) {
+        if (!user) return;
+        const nextBoard = { ...gameState.board };
+        nextBoard[to] = nextBoard[from];
+        delete nextBoard[from];
+        const nextTurn = gameState.turn === 'white' ? 'black' : 'white';
+        
+        if (isAiMode) {
+            gameState.board = nextBoard; gameState.turn = nextTurn; render();
+        } else {
+            try {
+                const roomRef = doc(db, 'artifacts', appId, 'public', 'data', 'rooms', currentRoomId);
+                await updateDoc(roomRef, { board: nextBoard, turn: nextTurn });
+            } catch (e) { console.error(e); showMsg("Action failed."); }
+        }
+    }
+
+    // --- Actions (Firebase Rules Compliant) ---
+    window.handleCreateRoom = async () => {
+        if (!user) { await startAuth(); if(!user) return; }
+        
+        const createBtn = document.getElementById('create-btn');
+        createBtn.disabled = true;
+        createBtn.innerText = "Creating...";
+
+        const code = Math.random().toString(36).substring(2,8).toUpperCase();
+        try {
+            // Path: /artifacts/{appId}/public/data/rooms/{code}
+            const roomRef = doc(db, 'artifacts', appId, 'public', 'data', 'rooms', code);
+            await setDoc(roomRef, {
+                board: createInitialBoard(),
+                turn: 'white',
+                players: { white: user.uid, black: null },
+                createdAt: Date.now()
+            });
+            subscribeRoom(code);
+        } catch (e) {
+            console.error("Room creation error:", e);
+            showMsg("Permission Error. Please try again.");
+            createBtn.disabled = false;
+            createBtn.innerText = "Create Room";
+        }
+    };
+
+    window.handleJoinRoom = async () => {
+        if (!user) await startAuth();
+        const code = document.getElementById('room-input').value.toUpperCase();
+        if(!code) return;
+        try {
+            const snap = await getDoc(doc(db, 'artifacts', appId, 'public', 'data', 'rooms', code));
+            if (snap.exists()) subscribeRoom(code);
+            else showMsg("Room not found.");
+        } catch (e) { showMsg("Join failed."); }
+    };
+
+    function subscribeRoom(code) {
+        currentRoomId = code;
+        document.getElementById('room-info').innerText = `ID: ${code}`;
+        unsubscribeRoom = onSnapshot(doc(db, 'artifacts', appId, 'public', 'data', 'rooms', code), snap => {
+            if(!snap.exists()) return;
+            gameState = snap.data();
+            if (gameState.players.white === user.uid) userRole = 'white';
+            else if (!gameState.players.black) {
+                updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'rooms', code), { 'players.black': user.uid });
+                userRole = 'black';
+            } else if (gameState.players.black === user.uid) {
+                userRole = 'black';
+            } else {
+                userRole = 'spectator';
+            }
+            document.getElementById('lobby-screen').style.display = 'none';
+            document.getElementById('game-ui').style.display = 'flex';
+            render();
+        }, (err) => {
+            console.error(err);
+            showMsg("Connection lost.");
+            resetToLobby();
+        });
+    }
+
+    window.handlePracticeAI = () => {
+        isAiMode = true; userRole = 'white';
+        gameState = { board: createInitialBoard(), turn: 'white', players: { white: 'p', black: 'ai' } };
+        document.getElementById('lobby-screen').style.display = 'none';
+        document.getElementById('game-ui').style.display = 'flex';
+        render();
+    };
+
+    window.setMapping = (dir, val) => {
+        if(dir === 'h') mappingH = parseInt(val); else mappingV = parseInt(val);
+        selectedPos = null; validMoves = []; render();
+    };
+
+    window.resetToLobby = () => {
+        if(unsubscribeRoom) unsubscribeRoom();
+        location.reload();
+    };
+</script>
+</body>
+</html>
